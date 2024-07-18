@@ -168,37 +168,39 @@ SCM.fit(instances)
 
 ## Output (for all algorithms)
 
-Every implemented algorithms returns a matrix with n (#instances) rows and c+1 (#clusters + 1) columns.
+Every implemented algorithm returns a matrix with n (#instances) rows and c+1 (#clusters + 1) columns.
 
-The i-th row of the matrix represent the "state" of the i-th instance.
+The (i-1)-th row of the matrix represent the "state" of the i-th instance.
 
 ### Core element for one cluster
 
-If the i-th instance is a core element for the j-th cluster, then the i-th row of the returned matrix will be:
+If the i-th instance is a core element for the j-th cluster, then the (i-1)-th row of the returned matrix will be:
 
-                          j            c+1
-    i-th row: [ 0 0 ... 0 1 0 ... 0 0 | 0]
+                             j-1            c
+    (i-1)-th row: [ 0 0 ... 0 1 0 ... 0 0 | 0]
+
+Note: i-1, j-1 and c (instead of c+1) because indexing in Python starts from 0!
     
 ### Shadow element for one cluster
 
-If the i-th instance is a shadow element ONLY for the j-th cluster, then the i-th row of the returned matrix will be:
+If the i-th instance is a shadow element ONLY for the j-th cluster, then the (i-1)-th row of the returned matrix will be:
 
-                          j            c+1
-    i-th row: [ 0 0 ... 0 1 0 ... 0 0 | 1]
+                             j-1            c
+    (i-1)-th row: [ 0 0 ... 0 1 0 ... 0 0 | 1]
 
 ### Shadow element for more than one cluster
 
-If the i-th instance is a shadow element for the j-th and the k-th cluster, then the i-th row of the returned matrix will be:
+If the i-th instance is a shadow element for the j-th and the k-th cluster, then the (i-1)-th row of the returned matrix will be:
 
-                          j         k          c+1
-    i-th row: [ 0 0 ... 0 1 0 ... 0 1 0 ... 0 | 0]
+                             j-1       k-1          c
+    (i-1)-th row: [ 0 0 ... 0 1 0 ... 0 1 0 ... 0 | 0]
 
 ### Exclusion element for all clusters
 
-If the i-th instance is excluded from all clusters, then the i-th row of the returned matrix will be:
+If the i-th instance is excluded from all clusters, then the (i-1)-th row of the returned matrix will be:
 
-                             c+1
-    i-th row: [ 1 1 ... 1 1 | 1]
+                                  c
+    (i-1)-th row: [ 1 1 ... 1 1 | 1]
 
 ## License
 
