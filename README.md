@@ -186,21 +186,21 @@ Note: c (instead of c+1) because indexing in Python starts from 0!
 If the i-th instance is a shadow element ONLY for the j-th cluster, then the i-th row of the returned matrix will be:
 
                           j             c
-    i-th row: [ 0 0 ... 0 1 0 ... 0 0 | 1]
+    i-th row: [ 0 0 ... 0 1 0 ... 0 0 | 1 ]
 
 ### Shadow element for more than one cluster
 
 If the i-th instance is a shadow element for the j-th and the k-th cluster, then the i-th row of the returned matrix will be:
 
                           j        k            c
-    i-th row: [ 0 0 ... 0 1 0 ... 0 1 0 ... 0 | 0]
+    i-th row: [ 0 0 ... 0 1 0 ... 0 1 0 ... 0 | 0 ]
 
 ### Exclusion element for all clusters
 
 If the i-th instance is excluded from all clusters, then the i-th row of the returned matrix will be:
 
                               c
-    i-th row: [ 1 1 ... 1 1 | 1]
+    i-th row: [ 1 1 ... 1 1 | 1 ]
 
 ## License
 
