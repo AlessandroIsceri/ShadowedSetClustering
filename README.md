@@ -7,11 +7,11 @@ This project serves as the internal stage at the University of Milan Bicocca for
 This project is an extension of the scikit-learn library.
 
 The five algorithms implemented are:
- - [Shadowed C-Means](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/_shadowed_c_means_clustering.py)
- - [Shadowed C-Means Upgraded](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/_shadowed_c_means_up_clustering.py)
- - [Shadowed Weighted C-Means](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/_shadowed_weighted_c_means_clustering.py)
- - [Multiple Kernel Shadowed C-Means](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/_multiple_kernel_shadowed_c_means.py)
- - [Shadowed Set-Based Multi-Granular Three-Way Clustering Ensemble](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/_SM3WCE.py)
+ - [Shadowed C-Means](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/src/_shadowed_c_means_clustering.py)
+ - [Shadowed C-Means Upgraded](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/src/_shadowed_c_means_up_clustering.py)
+ - [Shadowed Weighted C-Means](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/src/_shadowed_weighted_c_means_clustering.py)
+ - [Multiple Kernel Shadowed C-Means](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/src/_multiple_kernel_shadowed_c_means.py)
+ - [Shadowed Set-Based Multi-Granular Three-Way Clustering Ensemble](https://github.com/AlessandroIsceri/ShadowedSetClustering/blob/main/src/_SM3WCE.py)
 
 The algorithms were implemented based on several research papers.
 
@@ -165,6 +165,40 @@ SCM.fit(instances)
 
  - `verbose : boolean, default = True` \
    Verbosity mode.
+
+## Output (for all algorithms)
+
+Every implemented algorithms returns a matrix with n (#instances) rows and c+1 (#clusters + 1) columns.
+
+The i-th row of the matrix represent the "state" of the i-th instance.
+
+### Core element for one cluster
+
+If the i-th instance is a core element for the j-th cluster, then the i-th row of the returned matrix will be:
+
+                          j            c+1
+    i-th row: [ 0 0 ... 0 1 0 ... 0 0 | 0]
+    
+### Shadow element for one cluster
+
+If the i-th instance is a shadow element ONLY for the j-th cluster, then the i-th row of the returned matrix will be:
+
+                          j            c+1
+    i-th row: [ 0 0 ... 0 1 0 ... 0 0 | 1]
+
+### Shadow element for more than one cluster
+
+If the i-th instance is a shadow element for the j-th and the k-th cluster, then the i-th row of the returned matrix will be:
+
+                          j         k          c+1
+    i-th row: [ 0 0 ... 0 1 0 ... 0 1 0 ... 0 | 0]
+
+### Exclusion element for all clusters
+
+If the i-th instance is excluded from all clusters, then the i-th row of the returned matrix will be:
+
+                             c+1
+    i-th row: [ 1 1 ... 1 1 | 1]
 
 ## License
 
